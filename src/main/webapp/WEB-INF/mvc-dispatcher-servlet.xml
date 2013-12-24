@@ -2,10 +2,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation=" http://www.springframework.org/schema/mvc
-                            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-                            http://www.springframework.org/schema/beans
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context
                             http://www.springframework.org/schema/context/spring-context.xsd
@@ -29,8 +26,6 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-
-
     <bean id="methodHandlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="cacheSeconds" value="0"/>
         <property name="alwaysUseFullPath" value="true"/>
@@ -45,14 +40,13 @@
     <bean id="stringHttpMessageConverter"
           class="org.springframework.http.converter.StringHttpMessageConverter" />
 
-
+    <!-- Marshaller configuration -->
     <bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
         <property name="marshaller" ref="xstreamMarshaller"/>
         <property name="unmarshaller" ref="xstreamMarshaller"/>
     </bean>
 
-    <bean id="xstreamMarshaller"
-          class="org.springframework.oxm.xstream.XStreamMarshaller">
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
         <property name="aliases">
             <props>
                 <prop key="contact">org.pwntester.springserver.ContactImpl</prop>
