@@ -52,6 +52,13 @@
                 <prop key="contact">org.pwntester.springserver.ContactImpl</prop>
             </props>
         </property>
+        <property name="converters">
+            <list>
+                <!-- Uncomment line below to protect your app -->
+                <!--bean class="org.springframework.oxm.xstream.CatchAllConverter"/-->
+                <bean class="org.pwntester.springserver.ContactConverter"/>
+            </list>
+        </property>
     </bean>
 
 
